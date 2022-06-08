@@ -1,0 +1,81 @@
+// app global css in SCSS form
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-size: 18px;
+}
+
+img {
+  width: 100%;
+  object-fit: contain;
+}
+
+label {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 600;
+  color: #3f434a;
+}
+
+.flexx .q-tab {
+  width: 20% !important;
+}
+.q-tabs.flexx {
+  width: 80% !important;
+  margin: 0 auto !important;
+}
+
+.flexx .q-tab__indicator {
+  height: 4px;
+  width: 150px !important;
+  margin: 0 auto;
+}
+.flexx .q-tabs__content--align-center {
+  justify-content: space-between !important;
+}
+.q-btn:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+  box-shadow: none;
+}
+.q-drawer--left {
+  left: 0;
+  height: 155% !important;
+  transform: translateX(-100%);
+}
+
+.q-drawer {
+  position: fixed !important;
+}
+
+.splide__pagination__page.is-active {
+  background: #fe724c !important;
+  transform: scale(1.4);
+}
+
+@media (max-width: 1300px) {
+  .q-drawer--left {
+    left: 0;
+    height: 175% !important;
+    transform: translateX(-100%);
+  }
+}

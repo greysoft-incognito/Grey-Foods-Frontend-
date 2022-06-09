@@ -1,17 +1,26 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex flex-center main">
     <img
       alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+      src="Images/OnBoarding/whitelogo.png"
+      style="width: 30%"
+    />
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'IndexPage'
-})
+  name: "IndexPage",
+});
 </script>
+
+<style scoped>
+.main {
+  background-image: url("/splashscreen.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+</style>

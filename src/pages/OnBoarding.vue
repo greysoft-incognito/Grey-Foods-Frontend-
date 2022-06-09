@@ -105,16 +105,16 @@ export default defineComponent({
 .slide {
   margin: 0 auto;
   height: 50vh;
-  width: 70%;
+  width: 60%;
   padding: 0 !important;
   border: 1px solid #fe724c;
   border-radius: 40px;
 }
 
 .slide:nth-child(2n) {
-  width: 70%;
+  width: 60%;
 }
 .slide:nth-child(3n) {
-  width: 70%;
+  width: 60%;
 }
 </style>

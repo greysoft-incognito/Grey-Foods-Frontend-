@@ -72,6 +72,21 @@ label {
   transform: scale(1.4);
 }
 
+.swiper-slide-active {
+  height: 50vh !important;
+}
+
+.swiper-slide-next {
+  height: 40vh !important;
+  margin: auto !important;
+}
+
+.swiper-slide-prev {
+  height: 40vh !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
 @media (max-width: 1300px) {
   .q-drawer--left {
     left: 0;

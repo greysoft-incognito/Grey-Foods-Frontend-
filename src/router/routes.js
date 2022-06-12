@@ -26,6 +26,38 @@ const routes = [
      
     ]
   },
+  {
+    path: '/vendor',
+    component: () => import('layouts/Userplain.vue'),
+    children: [
+      { path: '/vendor', component: () => import('pages/Vendor.vue') },
+     
+    ]
+  },
+  {
+    path: '/orderdetails',
+    component: () => import('layouts/Userplain.vue'),
+    children: [
+      { path: '/orderdetails', component: () => import('pages/OrderDetails.vue') },
+     
+    ]
+  },
+  {
+    path: '/pay',
+    component: () => import('layouts/Userplain.vue'),
+    children: [
+      { path: '/pay', component: () => import('pages/Pay.vue') },
+     
+    ]
+  },
+  {
+    path: '/Editaccount',
+    component: () => import('layouts/Userplain.vue'),
+    children: [
+      { path: '/editaccount', component: () => import('pages/Editaccount.vue') },
+     
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

@@ -43,6 +43,29 @@ label {
   width: 150px !important;
   margin: 0 auto;
 }
+
+.tabs .q-tab--active .q-tab__label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #333333;
+}
+.tabs .q-tab-panel {
+  padding: 0;
+}
+
+.small .q-tab__label {
+  font-size: 10px;
+}
+
+.q-drawer--left.q-drawer--bordered {
+  border-right: none;
+}
+
+.tabs .q-tab__indicator {
+  height: 4px;
+}
 .flexx .q-tabs__content--align-center {
   justify-content: space-between !important;
 }
@@ -57,11 +80,6 @@ label {
   border-radius: inherit;
   box-shadow: none;
 }
-.q-drawer--left {
-  left: 0;
-  height: 155% !important;
-  transform: translateX(-100%);
-}
 
 .q-drawer {
   position: fixed !important;
@@ -70,12 +88,4 @@ label {
 .splide__pagination__page.is-active {
   background: #fe724c !important;
   transform: scale(1.4);
-}
-
-@media (max-width: 1300px) {
-  .q-drawer--left {
-    left: 0;
-    height: 175% !important;
-    transform: translateX(-100%);
-  }
 }

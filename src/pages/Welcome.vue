@@ -1,375 +1,298 @@
 <template>
   <div class="tex q-pt-md container">
-    <h2>
-      What would you like <br /><span class="text-primary"> to order?</span>
-    </h2>
-  </div>
-  <div class="container input q-my-xl">
-    <input
-      @focus="show"
-      class="input-class"
-      v-model="search"
-      type="text"
-      placeholder="What are you hungry for?"
-    />
-    <button class="input-button bg-primary">
-      <i class="ri-search-line"></i>
-    </button>
-  </div>
-  <div class="menu">
-    <div class="hold container q-pt-xl">
-      <h2 class="menu-text">Menu</h2>
-      <q-btn flat no-caps class="btn right-btn">
-        View All <i class="ri-arrow-right-line q-ml-md"></i>
-      </q-btn>
+    <div class="meals row_meals">
+      <div
+        v-for="meal in sampleMeals"
+        :key="meal.id"
+        class="span row no-wrap q-pl-md q-pr-lg items-center"
+      >
+        <img :src="meal.img" alt="" />
+        <p class="text-primary text-primary">{{ meal.name }}</p>
+      </div>
     </div>
-
-    <section class="section-one container">
-      <div class="row q-pa-md justify-content-center q-gutter-xs">
-        <div class="col">
-          <Splide :options="options">
-            <SplideSlide :key="item.id" v-for="item in menus" class="col ji">
-              <div class="hhh">
-                <q-card flat class="justify-content-center food-cards">
-                  <img
-                    :src="`${this.url + 'menu/' + item.menu_image_url}`"
-                    alt=""
-                    class="sponsor__img"
-                  />
-                  <p class="weight-text">{{ item.name }}</p>
-                </q-card>
-              </div>
-            </SplideSlide>
-          </Splide>
+    <div class="banners row_meals">
+      <div
+        v-for="banner in sampleBanners"
+        :key="banner.id"
+        class="banner row no-wrap items-center"
+      >
+        <div class="left bg-primary q-pa-sm text-white">
+          <p class="text-weight-bold q-mt-sm">{{ banner.name }}</p>
+          <small>{{ banner.food }}</small>
+          <p class="text-weight-bold q-my-sm">{{ banner.price }}</p>
+          <q-btn class="order_btn q-mt-sm"> Order Now </q-btn>
+        </div>
+        <div class="right">
+          <img :src="banner.img" alt="" />
         </div>
       </div>
-    </section>
-  </div>
-
-  <div class="menu">
-    <div class="hold container q-pt-lg">
-      <h2 class="menu-text">Based on Orders</h2>
-      <q-btn flat no-caps class="btn right-btn">
-        View All <i class="ri-arrow-right-line q-ml-md"></i>
-      </q-btn>
     </div>
-    <section class="section-one q-py-md">
-      <div class="com container text-bold">
-        <div
-          @click="
-            yourMeal(
-              item.id,
-              item.strCategory,
-              item.description,
-              item.menu_image_url,
-              item.name,
-              item.price,
-              item.quantity,
-              posts
-            )
-          "
-          :key="item.id"
-          v-for="item in filteredP"
-          class="sponsor__content"
-        >
-          <section class="section-one">
-            <div class="q-pa-md">
-              <img
-                :src="`${this.url + 'menu/' + item.menu_image_url}`"
-                alt=""
-                class="sponsor__img"
-              />
-              <p class="weight-text">{{ item.name }}</p>
-            </div>
-          </section>
+
+    <h5>Explore Vendors</h5>
+
+    <div class="vendors">
+      <div
+        v-for="vendor in vendors"
+        :key="vendor.id"
+        class="vendors_hold q-mb-xl q-mt-md"
+      >
+        <div class="top">
+          <img :src="vendor.img" alt="" />
+        </div>
+
+        <div class="hold row justify-between items-center">
+          <div class="left">
+            <p class="text-primary text-weight-bold">{{ vendor.name }}</p>
+            <small>
+              <i class="ri-map-pin-fill text-primary"></i> {{ vendor.location }}
+            </small>
+          </div>
+
+          <div class="right">
+            <q-checkbox
+              v-model="val"
+              checked-icon="star"
+              unchecked-icon="star_border"
+              indeterminate-icon="help"
+            />
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script>
-import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import "@splidejs/splide/dist/css/splide.min.css";
-import { api } from "boot/axios";
-// import {mapActions} from 'vuex'
 import { ref } from "vue";
 
 export default {
-  components: {
-    Splide,
-    SplideSlide,
-  },
-
   data() {
     return {
-      url: process.env.baseURL,
-      posts: [],
-      menus: [],
-      search: "",
-      slide: ref("style"),
-
-      options: {
-        rewind: true,
-        arrows: false,
-        perPage: 3,
-        width: "100%",
-        //  height: "15rem",
-        gap: "1rem",
-        breakpoints: {
-          1000: {
-            perPage: 3,
-          },
+      val: ref(true),
+      sampleMeals: [
+        {
+          id: 1,
+          name: "Chicken",
+          img: "/images/avatar.png",
         },
-      },
+        {
+          id: 2,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 3,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 4,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 5,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 6,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 7,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 8,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+        {
+          id: 9,
+          name: "Chicken",
+          img: "/images/avatar.png",
+        },
+      ],
+      sampleBanners: [
+        {
+          id: 1,
+          name: "Delicia",
+          img: "/images/banner.png",
+          price: "30% Off",
+          food: "Ofada Rice",
+        },
+        {
+          id: 2,
+          name: "Ritis",
+          img: "/images/banner.png",
+          price: "30% Off",
+          food: "Ofada Rice",
+        },
+        {
+          id: 3,
+          name: "Chicken",
+          img: "/images/banner.png",
+          price: "30% Off",
+          food: "Ofada Rice",
+        },
+        {
+          id: 4,
+          name: "Chicken",
+          img: "/images/banner.png",
+          price: "30% Off",
+          food: "Ofada Rice",
+        },
+        {
+          id: 5,
+          name: "Chicken",
+          img: "/images/banner.png",
+          price: "30% Off",
+          food: "Ofada Rice",
+        },
+        {
+          id: 6,
+          name: "Chicken",
+          img: "/images/banner.png",
+          price: "40% Off",
+          food: "Ofada Rice",
+        },
+      ],
+      vendors: [
+        {
+          id: 1,
+          name: "Delicia",
+          img: "/images/banner.png",
+          location: "31, Gwari Avenue Barnawa, kaduna",
+        },
+        {
+          id: 2,
+          name: "Ritis",
+          img: "/images/banner.png",
+          location: "31, Gwari Avenue Barnawa, kaduna",
+        },
+        {
+          id: 3,
+          name: "Chicken",
+          img: "/images/banner.png",
+          location: "31, Gwari Avenue Barnawa, kaduna",
+        },
+        {
+          id: 4,
+          name: "Chicken",
+          img: "/images/banner.png",
+          location: "31, Gwari Avenue Barnawa, kaduna",
+        },
+        {
+          id: 5,
+          name: "Chicken",
+          img: "/images/banner.png",
+          location: "31, Gwari Avenue Barnawa, kaduna",
+        },
+        {
+          id: 6,
+          name: "Chicken",
+          img: "/images/banner.png",
+          location: "31, Gwari Avenue Barnawa, kaduna",
+        },
+      ],
     };
-  },
-  created() {
-    // this.getPosts()
-  },
-  methods: {
-    // ...mapActions(['mealD']),
-    // getPosts(){
-    //     api.get('/api/menu').then((res) => {
-    //         const hey = res.data.data
-    //         this.menus = hey;
-    //         this.posts = res.data.data;
-    //         console.log(res.data.data);
-    //     }).catch((err) => {console.log(err)})
-    // },
-    // yourMeal(id, category, des, image, name, price, quantity, posts) {
-    //     this.mealD({id, category, des, image, name, price, quantity, posts})
-    //     .then(()=> {
-    //         this.$router.replace('/food')
-    // })},
-    // show(){
-    //     console.log('first')
-    //     this.$q.notify({
-    //     message: 'Search your favourite meals',
-    //     color: 'primary',
-    //     position: 'top-right',
-    //     avatar: "http://ec2-34-220-137-13.us-west-2.compute.amazonaws.com:31923/menu/1645109233Desert.png"
-    //   })
-    // },
-  },
-  mounted() {
-    console.log(this.$store);
-    console.log(process.env.baseURL);
-  },
-  computed: {
-    // filteredP: function(){
-    //     return this.posts.filter((post) => {
-    //         return post.name.match(this.search)
-    //     })
-    // },
   },
 };
 </script>
 
 <style scoped>
-.weight-text {
-  font-weight: bold;
-}
-
-.ji {
-  height: 200px;
-}
-
-.section-one {
-  height: 250px;
-}
-
-.hhh {
-  width: 100px;
-  height: 100px;
-  padding: 2rem 0;
-}
-h2 {
-  font-family: Gilroy-Bold;
-  font-size: 1.5em;
-  line-height: 123%;
-  color: #3f434a;
-  font-weight: 600;
-}
-
-.input {
-  display: flex;
-  align-items: center;
-}
-
-.input input {
-  background: #fcfcfd;
-  border: 1px solid #efefef;
-  border-radius: 10px;
-  padding: 0.85rem;
-  width: 80%;
-  height: 40px;
-  margin: 2rem 0;
-  transition: all 0.5s ease-in;
-}
-.input .input-class:focus {
-  border: none;
-  width: 80%;
+.span img {
+  width: 50px;
   height: 50px;
-  outline: 1px solid #fe724c;
-}
-.input input::placeholder {
-  font-size: 0.85rem;
+
+  padding-top: 10px;
 }
 
-.input button {
-  padding: 0.85rem;
-  color: #fff;
-  border: none;
-  margin: 0 1rem;
-  border-radius: 12px;
-  height: 40px;
+p {
+  margin-bottom: 0;
 }
 
-.input button i {
-  position: relative;
-  top: calc(50% - 12px); /* 50% - 3/4 of icon height */
-}
-
-.com {
-  display: grid;
-  /* grid-template-columns: repeat(5, 1fr); */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
-  /* margin: 3rem 00; */
-  padding-bottom: 5rem;
-}
-
-.tex h1 {
-  font-size: 2rem;
-  line-height: 2.5rem;
-}
-
-.enter {
-  padding: 0.75rem 1rem;
-  width: 70%;
-  background: #fcfcfd;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  border-radius: 10px;
-  margin: 0 auto;
-}
-
-.order-con {
-  padding: 10px 10px 10px 0;
-}
-
-.hold {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.menu-text {
-  font-family: Gilroy-SemiBold;
-  font-size: 1rem;
-  line-height: 123%;
+h5 {
+  font-size: 20px;
+  line-height: 139.5%;
   color: #3f434a;
   font-weight: 600;
 }
 
-.right-btn {
-  font-size: 0.7rem;
-}
-
-.ul {
-  background-color: red;
-}
-
-.hold .btn {
-  border: none;
-  background: transparent;
-  color: #fe724c;
-}
-
-.sponsor__content {
-  text-align: center;
+.span {
   background: #ffffff;
-  box-shadow: 0px 20px 30px rgba(211, 209, 216, 0.251);
-  border-radius: 30px;
-  padding: 1rem;
+  box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  width: 150px;
+}
+
+.row_meals,
+.banners {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  margin: 18px 0;
+  color: #fff;
+  gap: 1rem;
+}
+
+.row_meals::-webkit-scrollbar {
+  display: none;
+}
+
+.row_meals:hover {
+  transform: scale(1.1);
+}
+
+.banner {
+  width: 100%;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.banner .left {
   display: flex;
   flex-direction: column;
-  height: 170px;
-  /* margin: 1rem; */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 200px;
 }
 
-.sponsor__img {
-  opacity: 1;
-  width: 90px;
-  padding: 15px 0 20px 0;
-  border-radius: 50%;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
+.banner .right {
+  height: 130px;
+}
+.banner .right img {
+  height: 120px;
+  border-radius: 10px;
+  width: 200px;
 }
 
-.sponsor__img:hover {
-  opacity: 1;
-  width: 90px;
-  transition: all 0.5s ease-in-out;
-}
-
-.order__img {
-  opacity: 1;
-  width: 100%;
-  padding: 15px 0 20px 0;
-  border-radius: 50%;
-  /* filter: invert(0.7); */
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.order__img:hover {
-  opacity: 1;
-  width: 100%;
-  transition: all 0.5s ease-in-out;
-}
-
-/* .com{
-        display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    justify-items: center;
-    align-items: center;
-    row-gap: 3.5rem;
-    text-align: center;
-    } */
-
-.food-cards {
-  background: rgb(247, 247, 247);
-  border-radius: 54px;
-  padding: 3px 6px;
-}
-
-.food-cards p {
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-  color: #fe724c;
-}
-
-.order-cards {
-  background: rgb(247, 247, 247);
-  border-radius: 20px;
-  padding: 3px 6px;
-  box-shadow: 0 1px 5px rgb(0 0 0 / 0%), 0 2px 12px rgb(0 0 0 / 0%),
-    0 3px 1px -2px rgb(0 0 0 / 42%);
-}
-
-.order-cards p {
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-  color: #fe724c;
+.order_btn {
+  color: white;
+  border: 1px solid white;
+  font-size: 14px;
+  line-height: 16px;
+  /* background: ; */
 }
 
 @media (max-width: 400px) {
-  .enter {
-    width: 100%;
+  .banner .left {
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+  }
+
+  .banner .right img {
+    height: 100%;
+    border-radius: 10px;
+    width: 130px;
+    object-fit: cover;
+  }
+  .banner .right {
+    height: 100%;
   }
 }
 </style>

@@ -26,19 +26,6 @@
             <q-badge color="red" floating>4</q-badge>
           </q-btn>
         </div>
-
-        <div class="right flexxx">
-          <div class="text-primary heed">Hey!,Sirgappy <strong></strong></div>
-
-          <img src="/images/avatar.png" />
-
-          <!-- <q-btn
-            style="border-radius: 8px"
-            to="/login"
-            class="button q-mx-lg bg-primary"
-            >Login</q-btn
-          > -->
-        </div>
       </q-toolbar>
 
       <!-- <q-tabs style="width: 100%" class="q-mr-xl noo" align="left">
@@ -57,66 +44,55 @@
       side="left"
       elevated
     >
-      <div class="avatar q-py-lg">
-        <template>
-          <img />
-
-          <p class="q-pb-md text-white">Hey!, <strong></strong></p>
-        </template>
-        <template>
-          <p class="q-pb-lg text-white">User, <strong>not logged in</strong></p>
-        </template>
-      </div>
-
       <!-- drawer content -->
 
-      <q-list>
-        <q-item clickable v-ripple to="/profile">
-          <div class="wrapp">
-            <i class="ri-user-line"></i>
-            <p class="q-ml-md">My Profile</p>
-          </div>
-        </q-item>
+      <q-list class="navs">
+        <div class="top">
+          <q-btn @click="rightDrawerOpen = false" class="cancel">
+            <i class="ri-close-circle-line"></i>
+          </q-btn>
+          <div class="avatar">
+            <img src="/images/avatar.png" />
 
-        <q-item clickable v-ripple to="/">
-          <div class="wrapp">
-            <i class="ri-restaurant-line"></i>
-            <p class="q-ml-md">My Orders</p>
+            <p class="q-pb-md text-white">Hey!, <strong></strong></p>
+            <!-- <p class="q-pb-lg text-white">User, <strong>not logged in</strong></p> -->
           </div>
-        </q-item>
+          <q-item clickable v-ripple to="/profile">
+            <div class="wrapp">
+              <i class="ri-user-line"></i>
+              <p class="q-ml-md">My Profile</p>
+            </div>
+          </q-item>
 
-        <q-item clickable v-ripple to="profile">
-          <div class="wrapp">
-            <i class="ri-truck-line"></i>
-            <p class="q-ml-md">Delivery Address</p>
-          </div>
-        </q-item>
+          <q-item clickable v-ripple to="/">
+            <div class="wrapp">
+              <i class="ri-restaurant-line"></i>
+              <p class="q-ml-md">My Orders</p>
+            </div>
+          </q-item>
 
-        <q-item clickable v-ripple to="/">
-          <div class="wrapp">
-            <i class="ri-phone-line"></i>
-            <p class="q-ml-md">Contact</p>
-          </div>
-        </q-item>
+          <q-item clickable v-ripple to="/">
+            <div class="wrapp">
+              <i class="ri-settings-2-line"></i>
+              <p class="q-ml-md">Settings</p>
+            </div>
+          </q-item>
 
-        <q-item clickable v-ripple to="/">
-          <div class="wrapp">
-            <i class="ri-settings-2-line"></i>
-            <p class="q-ml-md">Settings</p>
-          </div>
-        </q-item>
-
-        <q-item clickable v-ripple to="/">
-          <div class="wrapp">
-            <i class="ri-question-line"></i>
-            <p class="q-ml-md">Help</p>
-          </div>
-        </q-item>
+          <q-item clickable v-ripple to="/">
+            <div class="wrapp">
+              <i class="ri-question-line"></i>
+              <p class="q-ml-md">Help</p>
+            </div>
+          </q-item>
+          <q-btn class="become">
+            <i class="ri-close-circle-fill q-mr-md q-pr-sm"></i>Become a vendor
+          </q-btn>
+        </div>
 
         <q-item clickable v-ripple>
           <div class="wrapp">
-            <i class="ri-logout"></i>
-            <p class="q-ml-md">Logout</p>
+            <i class="ri-logout-box-line"></i>
+            <p class="q-ml-md text-white">Logout</p>
           </div>
         </q-item>
       </q-list>
@@ -125,26 +101,6 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
-    <q-footer class="footer-tabs bg-primary q-pa-sm text-white">
-      <q-tabs align="center">
-        <q-route-tab
-          class="non q-mx-xl"
-          to="/"
-          style="font-size: 1rem"
-          label="Home"
-        />
-        <q-route-tab class="non q-mx-xl" to="/page"
-          ><i style="font-size: 1rem" class="ri-restaurant-line"></i
-        ></q-route-tab>
-        <q-route-tab class="non q-mx-xl" to="/register"
-          ><i style="font-size: 1rem" class="ri-heart-line"></i
-        ></q-route-tab>
-        <q-route-tab class="non q-mx-xl" to="/profile"
-          ><i style="font-size: 1rem" class="ri-user-line"></i
-        ></q-route-tab>
-      </q-tabs>
-    </q-footer>
   </q-layout>
 </template>
 
@@ -233,8 +189,50 @@ p {
   margin: 0.75rem 0;
 }
 
+.navs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: url("/images/bg.png") no-repeat;
+  background-position: -80% 90%;
+}
+
 .heed {
   font-size: 12px;
+}
+
+.become {
+  background: #fff;
+  color: #fe724c;
+  padding: 1rem;
+
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.become i {
+  font-size: 2rem;
+}
+
+.cancel {
+  background: #fff;
+  color: #fe724c;
+  padding: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cancel i {
+  font-size: 2rem;
 }
 @media (max-width: 500px) {
   .noo {
